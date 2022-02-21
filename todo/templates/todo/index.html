@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo webapp</title>
+    <style>
+        body {
+            background: lightblue;
+        }
+        .forms {
+            position: fixed;
+            right: 36px;
+            display: inline-block;
+            top: 30px;
+            width: 378px;
+        }
+        #title {
+            font-weight: bold;
+            color: darkorchid;
+            width: 18cm;
+        }
+        #detail {
+            width: 18cm;
+        }
+        .box {
+            margin: 14px 136px;
+            display: inline-block;
+            width: 15cm;
+        }
+        .list_items {
+            border: black solid 7px;
+            width: 22cm;
+            margin-left: 5cm;
+            margin-right: 5cm;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="forms">
+            <form action="{% url 'todo' %}" method="post">
+                {% csrf_token %}
+                <label>Enter task topic: </label>
+                {{ forms.title }}
+                <br>
+                <br>
+                <label>Enter task details: </label>
+                {{ forms.detail }}
+                {{ forms.date }}
+                <button type="submit" value="submit">submit</button>
+        </form>
+        </div>
+        {% for task in list %}
+
+                <div class="list_items">
+                        <p class="box" id="title">{{ task.title }}</p>
+                        <div class="box" id="detail">{{ task.detail }}</div>
+                        <p class="box" id="date">{{ task.date }}</p>
+                </div>
+        {% endfor %}
+</body>
+</html>
